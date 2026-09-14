@@ -1,0 +1,3 @@
+import { useState } from 'react';
+import NeonButton from '../common/NeonButton';
+export default function Roulette({onSpin}:{onSpin:()=>string}){const [result,setResult]=useState('¿Qué pista saldrá?');const [spinning,setSpinning]=useState(false);const spin=()=>{setSpinning(true);setResult('GIRANDO...');window.setTimeout(()=>{setResult(onSpin());setSpinning(false)},800)};return <div className="roulette"><div className={`roulette__wheel ${spinning?'roulette__wheel--spin':''}`}><span>1</span><span>2</span><span>3</span><strong>🎵</strong><span>4</span><span>5</span><span>6</span></div><div className="roulette__result">{result}</div><NeonButton onClick={spin} disabled={spinning}>🎰 GIRAR ROCOLA</NeonButton></div>}

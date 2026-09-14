@@ -1,0 +1,1 @@
+@media (prefers-reduced-motion:no-preference){.logo{animation:neonPulse 2.8s ease-in-out infinite alternate}}@keyframes neonPulse{from{box-shadow:0 0 7px rgba(255,42,166,.65),0 0 18px rgba(255,42,166,.24)}to{box-shadow:0 0 10px rgba(255,42,166,.95),0 0 34px rgba(255,42,166,.45)}}

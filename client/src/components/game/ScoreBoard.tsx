@@ -1,0 +1,2 @@
+import type { Team } from '../../models/Team';
+export default function ScoreBoard({teams,currentTeamId}:{teams:Team[];currentTeamId?:string}){return <div className="scoreboard">{teams.map(team=><div key={team.id} className={`scoreboard__team ${currentTeamId===team.id?'scoreboard__team--active':''}`}><span>{team.icon}</span><div className="scoreboard__name"><small>Equipo {team.id}</small><strong>{team.name}</strong></div><div className="scoreboard__score">⭐ {team.score}</div></div>)}</div>}

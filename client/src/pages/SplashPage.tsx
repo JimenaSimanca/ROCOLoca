@@ -1,0 +1,1 @@
+import { useNavigate } from 'react-router-dom';import Logo from '../components/common/Logo';import NeonButton from '../components/common/NeonButton';export default function SplashPage(){const n=useNavigate();return <main className="screen screen--center"><Logo/><NeonButton variant="blue" onClick={()=>n('/home')}>START →</NeonButton></main>}

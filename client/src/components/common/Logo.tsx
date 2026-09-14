@@ -1,0 +1,1 @@
+export default function Logo({compact=false}:{compact?:boolean}){return <div className={compact?'logo logo--compact':'logo'}><div className="logo__title">ROCOLOCA</div>{!compact&&<div className="logo__tagline">¡ADIVINA, CANTA Y ROBA!</div>}</div>}
