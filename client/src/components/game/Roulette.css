@@ -1,0 +1,13 @@
+.roco-roulette{width:100%;display:grid;justify-items:center;gap:18px;padding:12px 0}
+.roco-roulette__stage{position:relative;width:min(100%,410px);aspect-ratio:1;filter:drop-shadow(0 0 18px #ed18a666)}
+.roco-roulette__wheel{position:absolute;inset:5%;border-radius:50%;border:8px solid #ff3bb7;box-shadow:0 0 0 4px #27103c,0 0 0 7px #36c9ff,0 0 26px #ff2aa6,inset 0 0 24px #17041d;background:conic-gradient(from -30deg,#fa158c 0 59deg,#7322d9 60deg 119deg,#007eea 120deg 179deg,#f5ae06 180deg 239deg,#00bda9 240deg 299deg,#f36a08 300deg 359deg);transition:transform 3.5s cubic-bezier(.12,.7,.08,1);overflow:hidden}
+.roco-roulette__wheel::before{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(from -30deg,transparent 0deg 58.7deg,#fcecff 59deg 60deg);pointer-events:none}
+.roco-roulette__wheel::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 24%,#ffffff38,transparent 46%);pointer-events:none}
+.roco-roulette__pointer{position:absolute;z-index:5;top:-2%;left:50%;transform:translateX(-50%);width:0;height:0;border-left:19px solid transparent;border-right:19px solid transparent;border-top:35px solid #fff0ff;filter:drop-shadow(0 0 6px #ff31bd)}
+.roco-roulette__sector{position:absolute;z-index:2;display:flex;align-items:center;flex-direction:column;gap:2px;text-shadow:0 2px 7px #120014;font-weight:900;white-space:nowrap;transition:transform 3.5s cubic-bezier(.12,.7,.08,1)}
+.roco-roulette__number{font-size:clamp(13px,2vw,19px)}.roco-roulette__icon{font-size:clamp(18px,3vw,30px)}.roco-roulette__label{font-size:clamp(9px,1.6vw,12px);letter-spacing:.04em}
+.roco-roulette__vinyl{position:absolute;z-index:3;inset:35%;border-radius:50%;display:grid;place-items:center;border:4px solid #ff77d7;background:repeating-radial-gradient(circle,#110e22 0 5px,#27203b 6px 8px);box-shadow:0 0 18px #ff3cc0,inset 0 0 18px #000}
+.roco-roulette__vinyl span{font-size:clamp(24px,5vw,46px);color:#ff76dd;text-shadow:0 0 12px #ff3fc6}
+.roco-roulette__result{min-height:26px;font-weight:900;color:#ffdb6e;text-shadow:0 0 10px #ffab3180;text-align:center}
+@media(max-width:480px){.roco-roulette__wheel{border-width:5px}.roco-roulette__sector{gap:0}.roco-roulette__stage{width:min(100%,330px)}}
+@media(prefers-reduced-motion:reduce){.roco-roulette__wheel,.roco-roulette__sector{transition-duration:.01ms}}
