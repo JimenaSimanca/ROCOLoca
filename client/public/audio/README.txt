@@ -1,0 +1,1 @@
+Coloca aquí archivos MP3 con derechos de uso autorizados. Los nombres requeridos están en client/src/data/songs.ts. No se incluyen grabaciones comerciales. Para probar puedes poner tu propio MP3 autorizado como la-camisa-negra.mp3 y seleccionar AUDIO durante esa canción.
