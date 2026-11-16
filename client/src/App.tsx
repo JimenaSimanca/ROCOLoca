@@ -5,6 +5,7 @@ import RulesPage from './pages/RulesPage';
 import CreateGamePage from './pages/CreateGamePage';
 import HostLobbyPage from './pages/HostLobbyPage';
 import HostGamePage from './pages/HostGamePage';
+import JoinPage from './pages/JoinPage';
 import AmbientMusic from './components/audio/AmbientMusic';
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
     <Route path="/" element={<SplashPage />} />
     <Route path="/home" element={<HomePage />} />
     <Route path="/rules" element={<RulesPage />} />
+    <Route path="/join/:roomCode" element={<JoinPage />} />
     <Route path="/host/create" element={<CreateGamePage />} />
     <Route path="/host/lobby/:roomCode" element={<HostLobbyPage />} />
     <Route path="/host/game/:roomCode" element={<HostGamePage />} />

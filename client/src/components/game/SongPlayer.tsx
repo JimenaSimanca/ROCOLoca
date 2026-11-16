@@ -7,7 +7,7 @@ interface SongPlayerProps {
   onClose: () => void;
 }
 
-export default function SongPlayer({ audioUrl }: SongPlayerProps) {
+export default function SongPlayer({ audioUrl, enabled, onClose }: SongPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -31,6 +31,7 @@ export default function SongPlayer({ audioUrl }: SongPlayerProps) {
     }
   };
 
+  if (!enabled) return null;
   if (!audioUrl) {
     return <p>Esta canción no tiene audio disponible.</p>;
   }
@@ -49,6 +50,7 @@ export default function SongPlayer({ audioUrl }: SongPlayerProps) {
       <button type="button" onClick={toggleAudio}>
         {playing ? '⏸ Pausar audio' : '▶ Reproducir pista'}
       </button>
+      <button type="button" onClick={onClose}>Cerrar pista</button>
     </div>
   );
 }

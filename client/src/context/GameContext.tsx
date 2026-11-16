@@ -3,8 +3,11 @@ import {
   useContext,
   useMemo,
   useState,
+  useEffect,
+  useRef,
   type ReactNode,
 } from "react";
+import { connectRoom, send } from '../realtime/connection';
 import type { GameSettings, GameState } from "../models/Game";
 import { mockTeams } from "../data/mockTeams";
 import { songs } from "../data/songs";
@@ -53,6 +56,21 @@ const Ctx = createContext<Value | undefined>(undefined);
 const code = () => `RCL${Math.floor(100 + Math.random() * 900)}`;
 export function GameProvider({ children }: { children: ReactNode }) {
   const [game, setGame] = useState<GameState>(initialState);
+  const wsRef=useRef<WebSocket|null>(null);
+  useEffect(()=>{
+    if(!location.pathname.startsWith('/host/lobby/')&&!location.pathname.startsWith('/host/game/'))return;
+    const code=location.pathname.split('/').pop()||game.roomCode;
+    const ws=connectRoom(code,'host',m=>{if(m.type==='error')console.warn(m.message);});
+    wsRef.current=ws;
+    return()=>{ws?.close();wsRef.current=null;};
+  },[game.roomCode]);
+  useEffect(()=>{
+    const ws=wsRef.current;
+    if(!ws)return;
+    const publish=()=>send(ws,{type:'state',game});
+    if(ws.readyState===WebSocket.OPEN)publish();
+    else ws.addEventListener('open',publish,{once:true});
+  },[game]);
   const createGame = (settings: GameSettings) => {
     const roomCode = code();
     setGame({
