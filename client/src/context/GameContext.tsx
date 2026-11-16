@@ -41,6 +41,7 @@ const initialState: GameState = {
   round: 1,
   turn: 1,
   currentSongNumber: 1,
+  songIndex: 0,
   usedClues: [],
   currentPoints: 5,
   stealChain: [],
@@ -53,6 +54,11 @@ const initialState: GameState = {
   },
 };
 const Ctx = createContext<Value | undefined>(undefined);
+const nextSongIndex = (current: number) => {
+  if (songs.length <= 1) return 0;
+  const offset = 1 + Math.floor(Math.random() * (songs.length - 1));
+  return (current + offset) % songs.length;
+};
 const code = () => `RCL${Math.floor(100 + Math.random() * 900)}`;
 export function GameProvider({ children }: { children: ReactNode }) {
   const [game, setGame] = useState<GameState>(initialState);
@@ -75,6 +81,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     const roomCode = code();
     setGame({
       ...initialState,
+      songIndex: Math.floor(Math.random() * songs.length),
       roomCode,
       settings,
       teams: mockTeams
@@ -102,6 +109,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         turn: p.turn + 1,
         round: p.round + (ni === 0 ? 1 : 0),
         currentSongNumber: p.currentSongNumber + 1,
+        songIndex: nextSongIndex(p.songIndex),
         usedClues: [],
         currentPoints: 5,
         status:
@@ -153,6 +161,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     setGame((p) => ({
       ...p,
       currentSongNumber: p.currentSongNumber + 1,
+        songIndex: nextSongIndex(p.songIndex),
       usedClues: [],
       currentPoints: 5,
     }));

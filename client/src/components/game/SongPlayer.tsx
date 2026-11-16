@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react';
+import './SongPlayer.css';
 
 interface SongPlayerProps {
   audioUrl?: string;
@@ -10,10 +11,13 @@ interface SongPlayerProps {
 export default function SongPlayer({ audioUrl, enabled, onClose }: SongPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     audioRef.current?.pause();
     setPlaying(false);
+    setError('');
+    if (audioRef.current) audioRef.current.currentTime = 0;
   }, [audioUrl, enabled]);
 
   const toggleAudio = async () => {
@@ -25,6 +29,7 @@ export default function SongPlayer({ audioUrl, enabled, onClose }: SongPlayerPro
         await audio.play();
       } catch (error) {
         console.error('Error al reproducir audio:', error);
+        setError('No se pudo reproducir este archivo.');
       }
     } else {
       audio.pause();
@@ -33,7 +38,7 @@ export default function SongPlayer({ audioUrl, enabled, onClose }: SongPlayerPro
 
   if (!enabled) return null;
   if (!audioUrl) {
-    return <p>Esta canción no tiene audio disponible.</p>;
+    return <p className="song-player__error">Esta canción no tiene audio disponible.</p>;
   }
 
   return (
@@ -45,12 +50,14 @@ export default function SongPlayer({ audioUrl, enabled, onClose }: SongPlayerPro
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
+        onError={() => setError('No se encontró el audio de esta canción.')}
       />
 
-      <button type="button" onClick={toggleAudio}>
+      <div className="song-player__actions"><button className="song-player__button" type="button" onClick={toggleAudio}>
         {playing ? '⏸ Pausar audio' : '▶ Reproducir pista'}
       </button>
-      <button type="button" onClick={onClose}>Cerrar pista</button>
+      <button className="song-player__close" type="button" onClick={onClose}>✕ CERRAR</button></div>
+      {error && <p className="song-player__error" role="alert">{error}</p>}
     </div>
   );
 }

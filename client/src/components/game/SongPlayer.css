@@ -1,1 +1,65 @@
-.song-player{margin:18px auto;padding:20px;border:2px solid #ff2da8;border-radius:18px;background:linear-gradient(135deg,#24112f,#10172e);box-shadow:0 0 18px #ff2da855;text-align:center;max-width:420px}.song-player strong{color:#ff75d0;letter-spacing:2px}.song-player__subtitle{font-size:.85rem;color:#c9b5cf}.song-player__button{display:block;margin:16px auto;padding:13px 25px;border:1px solid #47d9ff;border-radius:12px;background:#13243c;color:white;font-weight:bold;cursor:pointer;box-shadow:0 0 12px #47d9ff66}.song-player__close{border:0;background:none;color:#ddd;cursor:pointer;text-decoration:underline}.song-player__error{color:#ffbdc5;font-size:.85rem}
+/* ROCOLoca: reproductor integrado con el tema neón */
+.song-player {
+  margin: 16px auto 20px;
+  padding: 18px 20px;
+  max-width: 440px;
+  border: 1px solid #ff2ca9;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #28102f, #101629);
+  box-shadow:
+    0 0 22px #ff2da83b,
+    inset 0 0 18px #3e174c;
+  text-align: center;
+}
+.song-player__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.song-player__button,
+.song-player__close {
+  appearance: none;
+  min-height: 46px;
+  padding: 12px 19px;
+  border-radius: 12px;
+  font: 800 0.9rem/1.2 inherit;
+  letter-spacing: 0.035em;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s,
+    background 0.15s;
+}
+.song-player__button {
+  color: #fff;
+  border: 1px solid #30dfff;
+  background: linear-gradient(135deg, #083955, #161238);
+  box-shadow: 0 0 15px #19d9ff75;
+}
+.song-player__close {
+  color: #ffc2e5;
+  border: 1px solid #ff39af;
+  background: #2d0e30;
+  box-shadow: 0 0 13px #ff39af55;
+}
+.song-player__button:hover,
+.song-player__close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px #ff3ab88c;
+}
+.song-player__button:focus-visible,
+.song-player__close:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.song-player__error {
+  color: #ffc0c9;
+  font-size: 0.85rem;
+}
+.roco-audio-label {
+  color: #d8c3ee;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
