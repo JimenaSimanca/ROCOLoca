@@ -11,7 +11,7 @@ const sectors = [
   { label: 'SORPRESA', icon: '🎬', key: 'PISTA ESPECIAL' },
 ];
 
-export default function Roulette({ onSpin }: { onSpin: () => string }) {
+export default function Roulette({ onSpin, onSpinComplete }: { onSpin: () => string; onSpinComplete?: (clue: string) => void }) {
   const [result, setResult] = useState('¡Gira para descubrir una pista!');
   const [spinning, setSpinning] = useState(false);
   const [angle, setAngle] = useState(0);
@@ -35,6 +35,7 @@ export default function Roulette({ onSpin }: { onSpin: () => string }) {
     timer.current = window.setTimeout(() => {
       setResult(clue === 'SIN PISTAS' ? 'No quedan pistas disponibles' : `✨ ${clue}`);
       setSpinning(false);
+      onSpinComplete?.(clue);
     }, 3500);
   };
 

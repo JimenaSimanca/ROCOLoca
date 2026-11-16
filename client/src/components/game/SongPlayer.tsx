@@ -14,7 +14,7 @@ export default function SongPlayer({ audioUrl, enabled, onClose }: SongPlayerPro
   useEffect(() => {
     audioRef.current?.pause();
     setPlaying(false);
-  }, [audioUrl]);
+  }, [audioUrl, enabled]);
 
   const toggleAudio = async () => {
     const audio = audioRef.current;
